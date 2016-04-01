@@ -24,6 +24,14 @@
 
 		var filter = options.filter;
 		$(inputEl).keyup(function(){
+			el = $(self).find(filterEl);
+			if(options.minCount) {
+				if(el.length <= options.minCount) {
+					return;
+				}
+			}
+			if(options.filterChildSelector) el = el.find(options.filterChildSelector);
+			
 			var val = $(this).val();
 			var contains = el.filter(function(){
 				return filter(this, val);
